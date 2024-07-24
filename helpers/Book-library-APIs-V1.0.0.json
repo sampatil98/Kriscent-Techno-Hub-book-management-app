@@ -9,6 +9,10 @@
         {
             "url": "http://localhost:3001",
             "description": "localhost server"
+        },
+        {
+            "url": "https://kriscent-techno-hub-book-management-app.onrender.com",
+            "description": "Live server"
         }
     ],
     "paths": {
