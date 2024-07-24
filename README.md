@@ -57,6 +57,8 @@ The API documentation is available at [deployed server url](https://kriscent-tec
 
 * JSON Web Token - For authentication and authorization
 
+* Joy - For Schema validation
+
 * Swagger - For API documentation
 
 ### Author
