@@ -14,7 +14,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 Clone the repository:
-```bash
+bash
 git clone https://github.com/sampatil98/Kriscent-Techno-Hub-book-management-app.git
 cd Kriscent-Techno-Hub-book-management-app
 
@@ -30,6 +30,7 @@ node index.js
 The API documentation is available at [deployed server url](https://kriscent-techno-hub-book-management-app.onrender.com/api-docs)
 
 ## API Endpoints
+
 ### Authentication
 POST /api/user/v1/register: Register a new user
 POST /api/user/v1/login: Login and get a JWT token
