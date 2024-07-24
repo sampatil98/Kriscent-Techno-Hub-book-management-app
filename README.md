@@ -32,21 +32,29 @@ The API documentation is available at [deployed server url](https://kriscent-tec
 ## API Endpoints
 
 ### Authentication
-POST /api/user/v1/register: Register a new user
-POST /api/user/v1/login: Login and get a JWT token
+
+* POST /api/user/v1/register: Register a new user
+
+* POST /api/user/v1/login: Login and get a JWT token
+
 ### Books
-GET /api/Books/v1: Get all books (requires authentication)
-POST /api/Books/v1: Create new book (requires authentication)
-PUT /api/Books/v1:book_id: Update a book by ID (requires Admin or Author role)
-DELETE /api/Books/:book_id: Delete a book by ID (requires Admin role)
-GET /api/Books/v1/:book_id: Get a book by ID (requires authentication)
+
+* GET /api/Books/v1: Get all books (requires authentication)
+
+* POST /api/Books/v1: Create new book (requires authentication)
+
+* PUT /api/Books/v1:book_id: Update a book by ID (requires Admin or Author role)
+
+* DELETE /api/Books/:book_id: Delete a book by ID (requires Admin role)
+
+* GET /api/Books/v1/:book_id: Get a book by ID (requires authentication)
 
 ### Built With
 
-Express - The web framework used
-Mongoose - Object Data Modeling (ODM) library for MongoDB and Node.js
-JSON Web Token - For authentication and authorization
-Swagger - For API documentation
+** Express - The web framework used
+** Mongoose - Object Data Modeling (ODM) library for MongoDB and Node.js
+** JSON Web Token - For authentication and authorization
+** Swagger - For API documentation
 
 ### Author
 
