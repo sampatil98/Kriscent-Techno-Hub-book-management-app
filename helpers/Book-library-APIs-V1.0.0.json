@@ -1,0 +1,619 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Kriscent Techno Hub book-library",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3001",
+            "description": "localhost server"
+        }
+    ],
+    "paths": {
+        "/api/user/v1/register": {
+            "description": "to create new user or register new user",
+            "post": {
+                "requestBody": {
+                    "description": "create new user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/registerUser"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Create-user"
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/registerUser"
+                                }
+                            }
+                        },
+                        "description": "Register"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Failed": {
+                                        "value": {
+                                            "message": "Failed",
+                                            "error": true,
+                                            "errorMessage": "err.message",
+                                            "statusCode": 400,
+                                            "data": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "create new user",
+                "description": "to create new user account"
+            }
+        },
+        "/api/user/v1/login": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/login-user"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "login"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/login-user"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "bad request": {
+                                        "value": {
+                                            "message": "Failed",
+                                            "error": true,
+                                            "errorMessage": "error message",
+                                            "statusCode": 400,
+                                            "data": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "bad request 400"
+                    }
+                },
+                "summary": "user login",
+                "description": "for user login "
+            }
+        },
+        "/api/Books/v1": {
+            "get": {
+                "tags": [
+                    "books-routes"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "token": {
+                                "value": "Bearer"
+                            }
+                        },
+                        "name": "token",
+                        "description": "Access Token",
+                        "schema": {},
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "get all book list": {
+                                        "value": {
+                                            "message": "Success",
+                                            "error": true,
+                                            "errorMessage": "",
+                                            "statusCode": 400,
+                                            "data": {
+                                                "msg": "All book data fetched successfully",
+                                                "bookData": [
+                                                    {
+                                                        "_id": "669ea93b8cf31bb11811ec3d",
+                                                        "title": "internet of theory",
+                                                        "author": "sam patil",
+                                                        "coverpage": "/home/cateina/Desktop/Book Liabrary/Backend/files/output/1721674043680Screenshot from 2024-07-22 15-03-22.png",
+                                                        "year": 2025,
+                                                        "__v": 0
+                                                    },
+                                                    {
+                                                        "_id": "669ed7cdf6a675c2d8ca8757",
+                                                        "title": "Rich Dad Poor Dad",
+                                                        "author": "Danneil karnins",
+                                                        "coverpage": "/home/cateina/Desktop/Book Liabrary/Backend/files/output/1721685965162Screenshot from 2024-07-22 15-03-22.png",
+                                                        "year": 2025,
+                                                        "__v": 0
+                                                    },
+                                                    {
+                                                        "_id": "669ffe53293c2c43f08b6ee6",
+                                                        "title": "harry poter",
+                                                        "author": "sam",
+                                                        "coverpage": "/home/cateina/Desktop/Book Liabrary/Backend/files/output/1721761362982Screenshot from 2024-07-22 15-03-22.png",
+                                                        "year": 2025,
+                                                        "__v": 0
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "list of all books"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "unauthorised access": {
+                                        "value": {
+                                            "message": "Failed",
+                                            "error": true,
+                                            "errorMessage": "jwt malformed",
+                                            "statusCode": 401,
+                                            "data": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "unthorised access"
+                    }
+                },
+                "summary": "Gel all books",
+                "description": "to get list of all books"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "create new book",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create-book"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "books-routes"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/create-book"
+                                },
+                                "examples": {
+                                    "create-new-book": {
+                                        "value": {
+                                            "message": "Success",
+                                            "error": true,
+                                            "errorMessage": "",
+                                            "statusCode": 400,
+                                            "data": {
+                                                "msg": "Book created successfully",
+                                                "bookData": {
+                                                    "title": "harry poter",
+                                                    "author": "sam",
+                                                    "coverpage": "/home/cateina/Desktop/Book Liabrary/Backend/files/output/1721761362982Screenshot from 2024-07-22 15-03-22.png",
+                                                    "year": 2025,
+                                                    "_id": "669ffe53293c2c43f08b6ee6",
+                                                    "__v": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "create new book"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "internal server error": {
+                                        "value": {
+                                            "message": "Failed",
+                                            "error": true,
+                                            "errorMessage": "error message",
+                                            "statusCode": 500,
+                                            "data": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "internal server error"
+                    }
+                },
+                "summary": "Create book",
+                "description": "create new book"
+            },
+            "parameters": [
+                {
+                    "name": "token",
+                    "description": "Access Token",
+                    "schema": {},
+                    "in": "header",
+                    "required": true
+                }
+            ]
+        },
+        "/api/Books/v1/{book_id}": {
+            "get": {
+                "tags": [
+                    "books-routes"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "book_id": {
+                                "value": "669ffe53293c2c43f08b6ee6"
+                            }
+                        },
+                        "name": "book_id",
+                        "description": "book id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "examples": {
+                            "token": {
+                                "value": "Bearer "
+                            }
+                        },
+                        "name": "token",
+                        "description": "token",
+                        "schema": {},
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Success": {
+                                        "value": {
+                                            "message": "Success",
+                                            "error": false,
+                                            "errorMessage": "",
+                                            "statusCode": 200,
+                                            "data": {
+                                                "msg": "Book found successfully",
+                                                "bookData": {
+                                                    "_id": "669ffe53293c2c43f08b6ee6",
+                                                    "title": "harry poter",
+                                                    "author": "sam",
+                                                    "coverpage": "/home/cateina/Desktop/Book Liabrary/Backend/files/output/1721761362982Screenshot from 2024-07-22 15-03-22.png",
+                                                    "year": 2025,
+                                                    "__v": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "success"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "400 bad request": {
+                                        "value": {
+                                            "message": "Failed",
+                                            "error": true,
+                                            "errorMessage": "No records found for book Id ${book_id}",
+                                            "statusCode": 400,
+                                            "data": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Get book by book ID",
+                "description": "get single book by book id"
+            },
+            "delete": {
+                "tags": [
+                    "books-routes"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "token": {
+                                "value": "Bearer "
+                            }
+                        },
+                        "name": "token",
+                        "description": "token",
+                        "schema": {},
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "success": {
+                                        "value": {
+                                            "message": "Success",
+                                            "error": true,
+                                            "errorMessage": "",
+                                            "statusCode": 400,
+                                            "data": {
+                                                "msg": "Book data deleted successfully",
+                                                "bookData": {
+                                                    "_id": "669ffe53293c2c43f08b6ee6",
+                                                    "title": "harry poter",
+                                                    "author": "sam",
+                                                    "coverpage": "/home/cateina/Desktop/Book Liabrary/Backend/files/output/1721761362982Screenshot from 2024-07-22 15-03-22.png",
+                                                    "year": 2025,
+                                                    "__v": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Success"
+                    }
+                },
+                "summary": "Delete book by book id",
+                "description": "Delete by book id"
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "book_id": {
+                            "value": "669ffe53293c2c43f08b6ee6"
+                        }
+                    },
+                    "name": "book_id",
+                    "description": "book id",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "registerUser": {
+                "title": "Root Type for registerUser",
+                "description": "",
+                "required": [
+                    "role",
+                    "phone",
+                    "password",
+                    "lastname",
+                    "firstname",
+                    "email"
+                ],
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "description": "users first name",
+                        "type": "string"
+                    },
+                    "lastname": {
+                        "description": "users last name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "users email id",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "user password",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "users phone number",
+                        "type": "integer"
+                    },
+                    "role": {
+                        "description": "role",
+                        "enum": [
+                            "Admin",
+                            "Author",
+                            "Reader"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "firstname": "user's first name",
+                    "lastname": "user's last name",
+                    "email": "user's email",
+                    "password": "user's password",
+                    "phone": "user's phone number",
+                    "role": "role"
+                }
+            },
+            "login-user": {
+                "description": "login user",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "allOf": [
+                    {
+                        "type": "object"
+                    }
+                ],
+                "properties": {
+                    "email": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "email": "sam@gmail.com",
+                    "password": "sambhaji"
+                }
+            },
+            "create-book": {
+                "description": "",
+                "required": [
+                    "author",
+                    "coverpage",
+                    "title",
+                    "year"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "author": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "year": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "coverpage": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "responses": {
+            "usercreated": {
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "user created successfully": {
+                                "value": {
+                                    "message": "Success",
+                                    "error": false,
+                                    "errorMessage": "User created successfully",
+                                    "statusCode": 201,
+                                    "data": {
+                                        "firstname": "omkar",
+                                        "lastname": "dhore",
+                                        "email": "omkar@gmail.com",
+                                        "password": "$2b$10$jZtckqOLvTgIxl41BJxXCOUbhisfTtgOs6RqNkR58Ct7plHX2zTZ.",
+                                        "phone": 9834645130,
+                                        "role": "Reader",
+                                        "_id": "669fe5d819f698fa490041db",
+                                        "__v": 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "user created successfully responce"
+            },
+            "login-user": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/login-user"
+                        },
+                        "examples": {
+                            "user login": {
+                                "value": {
+                                    "message": "Success",
+                                    "error": false,
+                                    "errorMessage": "",
+                                    "statusCode": 200,
+                                    "data": {
+                                        "msg": "login successful",
+                                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjllZDczNDI1N2U2YjZjNGFkYjlmNGEiLCJ1c2VybmFtZSI6InNhbSBkaG9yZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyMTc1Njc3NSwiZXhwIjoxNzIxNzU3Mzc1fQ.kjHQtL-3UNSfP5EgBjh-T_JRt_0fOnlq9V670X-CjSk"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "user-login"
+            },
+            "bad-request": {
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "400 bad request": {
+                                "value": {
+                                    "message": "Failed",
+                                    "error": true,
+                                    "errorMessage": "error message",
+                                    "statusCode": 400,
+                                    "data": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "400 bad request"
+            },
+            "create-book": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/create-book"
+                        }
+                    }
+                },
+                "description": ""
+            }
+        }
+    }
+}
