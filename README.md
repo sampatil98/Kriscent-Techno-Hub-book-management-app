@@ -51,13 +51,13 @@ The API documentation is available at [deployed server url](https://kriscent-tec
 
 ### Built With
 
-** Express - The web framework used
+* Express - The web framework used
 
-** Mongoose - Object Data Modeling (ODM) library for MongoDB and Node.js
+* Mongoose - Object Data Modeling (ODM) library for MongoDB and Node.js
 
-** JSON Web Token - For authentication and authorization
+* JSON Web Token - For authentication and authorization
 
-** Swagger - For API documentation
+* Swagger - For API documentation
 
 ### Author
 
